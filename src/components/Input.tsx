@@ -1,25 +1,31 @@
-import React from "react";
+import clsx from "clsx";
+import React, { SyntheticEvent } from "react";
 
+// Explicit prop definition
 type Props = {
-  onChange: (str: string) => void;
+  onChange: (evt: SyntheticEvent<HTMLInputElement>) => void;
   placeholder: string;
   name: string;
   value?: string;
+  className?: string;
 };
 
-export default function Input({
+const Input = ({
   onChange,
   name,
   placeholder,
   value = "",
-}: Props) {
+  className = "",
+}: Props) => {
   return (
     <input
-      onChange={event => onChange(event.target.value)}
+      onChange={onChange}
       name={name}
       placeholder={placeholder}
       value={value}
-      className="w-full rounded border bg-very-light-gray p-2.5 text-sm sm:p-4"
+      className={clsx("w-full focus:outline-none", className)}
     />
   );
-}
+};
+
+export default Input;
