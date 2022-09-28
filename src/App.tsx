@@ -18,11 +18,13 @@ function App() {
           <h1 className="text-3xl font-bold tracking-[0.3em] text-very-light-gray sm:text-4xl">
             TODO
           </h1>
-          <img src={moon} alt="moon icon" className="h-6 w-6" />
+          <button>
+            <img src={moon} alt="moon icon" className="h-6 w-6" />
+          </button>
         </div>
       </header>
       <main className="flex-1">
-        <div className="absolute top-28 right-0 left-0 mx-auto px-4 sm:top-56">
+        <div className="absolute top-28 right-0 left-0 mx-auto px-3 sm:top-56">
           <div className="center-element relative h-12 rounded border bg-very-light-gray text-sm">
             <Input
               placeholder="Create a new todo..."
@@ -37,6 +39,7 @@ function App() {
               className="absolute bottom-0 left-3 top-0 my-auto h-6 w-6"
               id="checkbox"
               name="checkbox"
+              role="checkbox"
             />
           </div>
         </div>

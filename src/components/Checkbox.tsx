@@ -7,15 +7,18 @@ type Props = JSX.IntrinsicElements["input"];
 
 const Checkbox = ({ className, type, ...props }: Props) => {
   return (
-    <label role="button">
+    <label>
       <input type="checkbox" {...props} className="opacity-0" />
       <div
+        tabIndex={0}
+        role="checkbox"
         className={clsx(
-          "flex h-5 w-5 items-center justify-center rounded-full border border-very-light-grayish-blue",
+          "flex h-[22px] w-[22px] items-center justify-center rounded-full border border-very-light-grayish-blue focus:border-4",
           {
             "border-none bg-gradient-to-br from-check-gradient1 to-check-gradient2":
               props.checked,
           },
+
           className
         )}
       >
