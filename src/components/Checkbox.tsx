@@ -10,8 +10,6 @@ const Checkbox = ({ className, type, ...props }: Props) => {
     <label>
       <input type="checkbox" {...props} className="opacity-0" />
       <div
-        tabIndex={0}
-        role="checkbox"
         className={clsx(
           "flex h-[22px] w-[22px] items-center justify-center rounded-full border border-very-light-grayish-blue focus:border-4",
           {

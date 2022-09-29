@@ -4,6 +4,7 @@ import React, { SyntheticEvent } from "react";
 // Explicit prop definition
 type Props = {
   onChange: (evt: SyntheticEvent<HTMLInputElement>) => void;
+  onKeyDown: (evt: React.KeyboardEvent<HTMLInputElement>) => void;
   placeholder: string;
   name: string;
   value?: string;
@@ -12,6 +13,7 @@ type Props = {
 
 const Input = ({
   onChange,
+  onKeyDown,
   name,
   placeholder,
   value = "",
@@ -19,6 +21,7 @@ const Input = ({
 }: Props) => {
   return (
     <input
+      onKeyDown={onKeyDown}
       onChange={onChange}
       name={name}
       placeholder={placeholder}
