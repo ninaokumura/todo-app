@@ -1,12 +1,13 @@
 import clsx from "clsx";
-import { KeyboardEvent, SyntheticEvent, useState } from "react";
+import { KeyboardEvent, SyntheticEvent, ChangeEvent, useState } from "react";
 import moon from "./assets/images/icon-moon.svg";
 import Checkbox from "./components/Checkbox";
 import Input from "./components/Input";
+import TodoList from "./components/TodoList";
 
-type TodoStatus = "completed" | "pending";
+export type TodoStatus = "completed" | "pending";
 
-type TodoItem = {
+export type TodoItem = {
   text: string;
   id: string;
   status: TodoStatus;
@@ -15,25 +16,41 @@ type TodoItem = {
 function App() {
   const [todos, setTodos] = useState<TodoItem[]>([]);
   const [newTodo, setNewTodo] = useState("");
-  const [isChecked, setIsChecked] = useState(false);
+  const [checkedAll, setCheckedAll] = useState(false);
 
   // function that returns next id
   const getNextTodoId = () => {
     return String(todos.length + 1);
   };
 
-  const handleTodo = (evt: SyntheticEvent<HTMLInputElement>) => {
+  // track todo input value
+  const handleChangeTodo = (evt: SyntheticEvent<HTMLInputElement>) => {
     setNewTodo(evt.currentTarget.value);
   };
 
-  const handleKeyEvt = (evt: KeyboardEvent<HTMLInputElement>) => {
+  // add todos
+  const handleAddTodo = (evt: KeyboardEvent<HTMLInputElement>) => {
     if (evt.key === "Enter") {
       setTodos([
         ...todos,
-        { text: newTodo, id: getNextTodoId(), status: "pending" },
+        {
+          text: newTodo,
+          id: getNextTodoId(),
+          status: "pending",
+        },
       ]);
       setNewTodo("");
     }
+  };
+
+  // Toggle all checkboxex
+  const handleToggleAll = (evt: ChangeEvent<HTMLInputElement>) => {
+    const nextStatus: TodoStatus = evt.target.checked ? "completed" : "pending";
+    const nextTodos = todos.map(todo => {
+      return { ...todo, status: nextStatus };
+    });
+    setTodos(nextTodos);
+    setCheckedAll(evt.target.checked);
   };
 
   return (
@@ -49,63 +66,32 @@ function App() {
         </div>
       </header>
       <main className="flex-1">
-        <div className="absolute top-28 right-0 left-0 mx-auto px-3 sm:top-56">
-          <div className="center-element relative h-14 rounded border bg-very-light-gray text-sm">
+        {/* Enter todo */}
+        <div className="absolute top-24 right-0 left-0 mx-auto px-3 sm:top-56">
+          <div className="center-element relative h-14 rounded-md border bg-very-light-gray text-sm">
             <Input
-              onKeyDown={handleKeyEvt}
+              onKeyDown={handleAddTodo}
               placeholder="Create a new todo..."
-              onChange={handleTodo}
+              onChange={handleChangeTodo}
               value={newTodo}
               name="todo"
               className="absolute inset-0 pl-10"
             />
+
             <Checkbox
-              checked={isChecked}
-              onChange={() => {
-                setIsChecked(!isChecked);
-              }}
+              checked={checkedAll}
+              onChange={handleToggleAll}
               className="absolute bottom-0 left-3 top-0 my-auto h-6 w-6"
               id="checkbox"
               name="checkbox"
-              role="checkbox"
             />
           </div>
         </div>
 
-        <div className="absolute top-28 right-0 left-0 mx-auto px-3 sm:top-72">
+        {/* render todos with onKeyDown */}
+        <div className="absolute top-40 right-0 left-0 mx-auto px-3 sm:top-72">
           {todos.length > 0 && (
-            <ul className="center-element divide-y overflow-hidden rounded-md bg-very-light-gray shadow-lg">
-              {todos.map(todo => (
-                <li key={todo.id} className=" relative h-14 text-sm">
-                  <div className="flex h-full items-center pl-7">
-                    <Checkbox
-                      checked={todo.status === "completed"}
-                      onChange={() => {
-                        const nextTodos = [...todos];
-                        const idx = todos.findIndex(td => td.id === todo.id);
-                        nextTodos[idx].status =
-                          todo.status === "completed" ? "pending" : "completed";
-                        setTodos(nextTodos);
-                      }}
-                      className="absolute bottom-0 left-3 top-0 my-auto h-6 w-6"
-                      id="checkbox"
-                      name="checkbox"
-                      role="checkbox"
-                    />
-                    <span
-                      className={clsx("", {
-                        "line-through": todo.status === "completed",
-                      })}
-                    >
-                      {todo.text}
-                    </span>
-                  </div>
-                </li>
-              ))}
-              <li className="relative flex h-14 items-center justify-start border px-4 text-sm">
-                <div>{`${todos.length} items left`}</div>
-              </li>
-            </ul>
+            <TodoList todos={todos} onTodosChange={setTodos} />
           )}
         </div>
       </main>

@@ -7,7 +7,7 @@ type Props = JSX.IntrinsicElements["input"];
 
 const Checkbox = ({ className, type, ...props }: Props) => {
   return (
-    <label>
+    <label className="cursor-pointer">
       <input type="checkbox" {...props} className="opacity-0" />
       <div
         className={clsx(
