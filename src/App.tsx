@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { KeyboardEvent, SyntheticEvent, ChangeEvent, useState } from "react";
 import moon from "./assets/images/icon-moon.svg";
 import Checkbox from "./components/Checkbox";
@@ -54,8 +53,8 @@ function App() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="relative min-h-[12rem] border bg-mobile-light bg-cover bg-no-repeat sm:min-h-[20rem] sm:bg-desktop-light">
+    <div className="flex min-h-screen flex-col bg-very-light-gray font-josefina-sans">
+      <header className="relative min-h-[12rem] bg-mobile-light bg-cover bg-no-repeat sm:min-h-[20rem] sm:bg-desktop-light">
         <div className="center-element flex justify-between pt-12 sm:pt-20">
           <h1 className="text-3xl font-bold tracking-[0.3em] text-very-light-gray sm:text-4xl">
             TODO
@@ -68,7 +67,7 @@ function App() {
       <main className="flex-1">
         {/* Enter todo */}
         <div className="absolute top-24 right-0 left-0 mx-auto px-3 sm:top-56">
-          <div className="center-element relative h-14 rounded-md border bg-very-light-gray text-sm">
+          <div className="center-element relative h-14 overflow-hidden rounded-md bg-white text-sm">
             <Input
               onKeyDown={handleAddTodo}
               placeholder="Create a new todo..."
@@ -95,7 +94,7 @@ function App() {
           )}
         </div>
       </main>
-      <footer className="center-element">Made in nz</footer>
+      {/* <footer className="center-element flex-1">Made in nz</footer> */}
     </div>
   );
 }
