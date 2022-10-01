@@ -1,4 +1,4 @@
-import { KeyboardEvent, SyntheticEvent, ChangeEvent, useState } from "react";
+import { ChangeEvent, KeyboardEvent, SyntheticEvent, useState } from "react";
 import moon from "./assets/images/icon-moon.svg";
 import Checkbox from "./components/Checkbox";
 import Input from "./components/Input";
