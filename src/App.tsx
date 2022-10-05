@@ -1,9 +1,8 @@
 import { ChangeEvent, KeyboardEvent, SyntheticEvent, useState } from "react";
-import moon from "./assets/images/icon-moon.svg";
-import sun from "./assets/images/icon-sun.svg";
 import Checkbox from "./components/Checkbox";
 import Input from "./components/Input";
 import TodoList from "./components/TodoList";
+import ToggleDarkMode from "./components/ToggleDarkMode";
 
 export type TodoStatus = "completed" | "pending";
 
@@ -17,7 +16,6 @@ function App() {
   const [todos, setTodos] = useState<TodoItem[]>([]);
   const [newTodo, setNewTodo] = useState("");
   const [checkedAll, setCheckedAll] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
 
   // function that returns next id
   const getNextTodoId = () => {
@@ -54,19 +52,6 @@ function App() {
     setCheckedAll(evt.target.checked);
   };
 
-  function toggleDarkMode() {
-    setDarkMode(prevMode => {
-      const nextMode = !prevMode;
-
-      if (nextMode) {
-        document.body.classList.add("dark");
-      } else {
-        document.body.classList.remove("dark");
-      }
-      return nextMode;
-    });
-  }
-
   return (
     <div className="flex min-h-screen flex-col bg-very-light-gray font-josefina-sans dark:bg-very-dark-blue">
       <header className="relative min-h-[12rem] bg-mobile-light bg-cover bg-no-repeat  dark:bg-mobile-dark sm:min-h-[20rem] sm:bg-desktop-light dark:sm:bg-desktop-dark">
@@ -74,13 +59,7 @@ function App() {
           <h1 className="text-3xl font-bold tracking-[0.3em] text-very-light-gray sm:text-4xl">
             TODO
           </h1>
-          <button onClick={toggleDarkMode}>
-            {darkMode ? (
-              <img src={sun} alt="sun icon" className="h-6 w-6" />
-            ) : (
-              <img src={moon} alt="moon icon" className="h-6 w-6" />
-            )}
-          </button>
+          <ToggleDarkMode />
         </div>
       </header>
       <main className="flex-1">
