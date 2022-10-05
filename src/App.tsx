@@ -69,7 +69,7 @@ function App() {
 
   return (
     <div className="flex min-h-screen flex-col bg-very-light-gray font-josefina-sans dark:bg-very-dark-blue">
-      <header className="relative min-h-[12rem] bg-mobile-light bg-cover bg-no-repeat  sm:min-h-[20rem] sm:bg-desktop-light">
+      <header className="relative min-h-[12rem] bg-mobile-light bg-cover bg-no-repeat  dark:bg-mobile-dark sm:min-h-[20rem] sm:bg-desktop-light dark:sm:bg-desktop-dark">
         <div className="center-element flex justify-between pt-12 sm:pt-20">
           <h1 className="text-3xl font-bold tracking-[0.3em] text-very-light-gray sm:text-4xl">
             TODO
