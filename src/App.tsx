@@ -86,7 +86,7 @@ function App() {
       <main className="flex-1">
         {/* Enter todo */}
         <div className="absolute top-24 right-0 left-0 mx-auto px-3 sm:top-56">
-          <div className="center-element relative h-14 overflow-hidden rounded-md bg-very-light-gray text-sm dark:text-very-light-gray">
+          <div className="center-element relative h-14 overflow-hidden rounded-md bg-very-light-gray text-sm dark:text-dark-grayish-blue">
             <Input
               onKeyDown={handleAddTodo}
               placeholder="Create a new todo..."

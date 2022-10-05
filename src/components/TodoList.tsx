@@ -36,7 +36,7 @@ const TodoList = (props: Props) => {
 
   return (
     <>
-      <ul className="sm:center-element divide-y overflow-hidden rounded-md bg-very-light-gray shadow-xl dark:bg-very-dark-desaturated-blue dark:text-very-light-gray">
+      <ul className="sm:center-element divide-y overflow-hidden rounded-md bg-very-light-gray shadow-xl dark:divide-very-dark-grayish-blue dark:bg-very-dark-desaturated-blue dark:text-light-grayish-blue2">
         {props.todos
           .filter(todo => {
             if (filter === "all") {
@@ -71,7 +71,8 @@ const TodoList = (props: Props) => {
 
                 <span
                   className={clsx("", {
-                    "line-through": todo.status === "completed",
+                    "line-through dark:text-dark-grayish-blue":
+                      todo.status === "completed",
                   })}
                 >
                   {todo.text}
@@ -100,7 +101,7 @@ const TodoList = (props: Props) => {
         </li>
       </ul>
 
-      <div className="relative mt-6 flex h-14 items-center justify-center gap-4 rounded-md bg-white px-4 font-josefina-sans text-sm font-semibold text-dark-grayish-blue opacity-[0.8] shadow-xl sm:hidden">
+      <div className="relative mt-6 flex h-14 items-center justify-center gap-4 rounded-md bg-white px-4 font-josefina-sans text-sm font-semibold text-dark-grayish-blue opacity-[0.8] shadow-xl dark:bg-very-dark-desaturated-blue sm:hidden">
         <FilterActions onChangeFilter={setFilter} />
       </div>
     </>

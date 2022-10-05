@@ -11,7 +11,7 @@ const Checkbox = ({ className, type, ...props }: Props) => {
       <input type="checkbox" {...props} className="opacity-0" />
       <div
         className={clsx(
-          "flex h-[22px] w-[22px] items-center justify-center rounded-full border border-very-light-grayish-blue focus:border-4",
+          "dark:border-dark:text-dark-grayish-blue flex h-[22px] w-[22px] items-center justify-center rounded-full border border-dark-grayish-blue focus:border-4",
           {
             "border-none bg-gradient-to-br from-check-gradient1 to-check-gradient2":
               props.checked,

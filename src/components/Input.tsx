@@ -27,7 +27,7 @@ const Input = ({
       placeholder={placeholder}
       value={value}
       className={clsx(
-        "w-full px-10 focus:outline-none dark:bg-very-dark-desaturated-blue",
+        "w-full px-10 focus:outline-none dark:bg-very-dark-desaturated-blue dark:text-dark-grayish-blue",
         className
       )}
     />
