@@ -20,7 +20,19 @@ const Checkbox = ({ className, type, ...props }: Props) => {
           className
         )}
       >
-        <img src={checkIcon} alt="check icon" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="11"
+          height="9"
+          className={clsx(
+            "stroke-very-light-gray dark:stroke-very-dark-desaturated-blue",
+            {
+              "dark:stroke-very-light-gray": props.checked,
+            }
+          )}
+        >
+          <path fill="none" stroke-width="2" d="M1 4.304L3.696 7l6-6" />
+        </svg>
       </div>
     </label>
   );

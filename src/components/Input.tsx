@@ -26,7 +26,10 @@ const Input = ({
       name={name}
       placeholder={placeholder}
       value={value}
-      className={clsx("w-full focus:outline-none", className)}
+      className={clsx(
+        "w-full px-10 focus:outline-none dark:bg-very-dark-desaturated-blue",
+        className
+      )}
     />
   );
 };

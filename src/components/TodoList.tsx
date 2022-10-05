@@ -36,7 +36,7 @@ const TodoList = (props: Props) => {
 
   return (
     <>
-      <ul className="sm:center-element divide-y overflow-hidden rounded-md bg-very-light-gray shadow-xl">
+      <ul className="sm:center-element divide-y overflow-hidden rounded-md bg-very-light-gray shadow-xl dark:bg-very-dark-desaturated-blue dark:text-very-light-gray">
         {props.todos
           .filter(todo => {
             if (filter === "all") {
@@ -60,7 +60,7 @@ const TodoList = (props: Props) => {
                       todo.status === "completed" ? "pending" : "completed";
                     props.onTodosChange(nextTodos);
                   }}
-                  className="absolute bottom-0 left-3 top-0 my-auto h-6 w-6"
+                  className="absolute bottom-0 left-3 top-0 my-auto h-6 w-6 "
                   id="checkbox"
                   name="checkbox"
                 />
