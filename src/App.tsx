@@ -4,6 +4,7 @@ import {
   SyntheticEvent,
   useState,
   useEffect,
+  useCallback,
 } from "react";
 import Checkbox from "./components/Checkbox";
 import Input from "./components/Input";
@@ -28,14 +29,6 @@ function App() {
   const [newTodo, setNewTodo] = useState("");
   const [checkedAll, setCheckedAll] = useState(false);
 
-  // set item on local storage
-  useEffect(() => {
-    // convert to a string
-    if (todos.length > 0) {
-      window.localStorage.setItem("todos", JSON.stringify(todos));
-    }
-  }, [todos]);
-
   // get items on local storage
   useEffect(() => {
     const data = window.localStorage.getItem("todos");
@@ -46,6 +39,12 @@ function App() {
     // convert to object
     setTodos(JSON.parse(data));
   }, []);
+
+  // set item on local storage
+  const handlePersistTodos = (todos: TodoItem[]) => {
+    setTodos(todos);
+    window.localStorage.setItem("todos", JSON.stringify(todos));
+  };
 
   // function that returns next id
   const getNextTodoId = () => {
@@ -64,7 +63,7 @@ function App() {
     if (evt.key === "Enter") {
       const nextTodoID = getNextTodoId();
       console.log(nextTodoID);
-      setTodos([
+      handlePersistTodos([
         ...todos,
         {
           text: newTodo,
@@ -82,7 +81,7 @@ function App() {
     const nextTodos = todos.map(todo => {
       return { ...todo, status: nextStatus };
     });
-    setTodos(nextTodos);
+    handlePersistTodos(nextTodos);
     setCheckedAll(evt.target.checked);
   };
 
@@ -122,7 +121,7 @@ function App() {
         {/* render todos with onKeyDown */}
         <div className="absolute top-40 right-0 left-0 mx-auto px-3 sm:top-72">
           {todos.length > 0 && (
-            <TodoList todos={todos} onTodosChange={setTodos} />
+            <TodoList todos={todos} onTodosChange={handlePersistTodos} />
           )}
         </div>
       </main>
